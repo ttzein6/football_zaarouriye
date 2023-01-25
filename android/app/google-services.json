@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "947096917073",
+    "firebase_url": "https://football-de7bd-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "football-de7bd",
+    "storage_bucket": "football-de7bd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:947096917073:android:f3019a14ca13dd14225470",
+        "android_client_info": {
+          "package_name": "com.example.nede_fetyen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "947096917073-thvbjot3eacbpg1pckrga11olcduouvh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1Qb0XE_mF031sQJXshs4cauzfvWSl5hw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "947096917073-thvbjot3eacbpg1pckrga11olcduouvh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

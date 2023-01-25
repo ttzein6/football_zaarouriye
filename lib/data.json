@@ -1,0 +1,20 @@
+{
+    "teams":{
+        "tigers":{
+            "rc":{},
+            "yc":{},
+            "players":[
+                "tamer"
+            ]
+        }
+    },
+    "players":{
+        "tamer":{
+        "rc":0 ,
+        "yc":0,
+        "g":0,
+        "t":"tigers",
+        "image":""           
+        }
+    }
+}
