@@ -11,7 +11,7 @@ class TeamStats extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            Text(team.name),
+            Text("${team.name}"),
           ],
         ),
       ),
