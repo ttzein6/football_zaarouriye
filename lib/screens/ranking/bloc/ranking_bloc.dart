@@ -13,6 +13,7 @@ class RankingBloc extends Bloc<RankingEvent, RankingState> {
       emit(RankingLoading());
       await Database().getTeamsData().then((value) {
         teams = value ?? [];
+
         teams.sort((a, b) {
           int points = b.points.compareTo(a.points);
           if (points != 0) {
@@ -31,6 +32,7 @@ class RankingBloc extends Bloc<RankingEvent, RankingState> {
             }
           }
         });
+
         emit(RankingLoaded(teamsData: teams));
       });
     });

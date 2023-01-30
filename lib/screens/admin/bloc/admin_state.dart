@@ -9,5 +9,8 @@ class AdminLoading extends AdminState {}
 
 class AdminLoaded extends AdminState {
   List<Player> players;
-  AdminLoaded({required this.players});
+  List<Team> teams;
+  List<Match> matches;
+  AdminLoaded(
+      {required this.players, required this.teams, required this.matches});
 }

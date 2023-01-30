@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nede_fetyen/constants.dart';
 import 'package:nede_fetyen/screens/admin/bloc/admin_bloc.dart';
+import 'package:nede_fetyen/screens/admin/widgets/add_match_results.dart';
 import 'package:nede_fetyen/screens/admin/widgets/add_new_team.dart';
 import 'package:nede_fetyen/screens/admin/widgets/add_player_goals.dart';
 import 'package:nede_fetyen/screens/admin/widgets/add_player_rc.dart';
 import 'package:nede_fetyen/screens/admin/widgets/add_player_yc.dart';
 import 'package:nede_fetyen/screens/admin/widgets/option.dart';
+import 'package:nede_fetyen/screens/admin/widgets/schedule_match.dart';
 
 class AdminScreen extends StatefulWidget {
   const AdminScreen({super.key});
@@ -40,11 +42,17 @@ class _AdminScreenState extends State<AdminScreen> {
             ),
             Option(
               title: "Add Match Result",
-              destination: Container(),
+              destination: AddMatchResult(
+                matches: state.matches
+                    .where((element) => element.played == false)
+                    .toList(),
+              ),
             ),
             Option(
               title: "Schedule Match",
-              destination: Container(),
+              destination: ScheduleMatch(
+                teams: state.teams,
+              ),
             ),
             Option(
               title: "Add New Team",
@@ -54,7 +62,21 @@ class _AdminScreenState extends State<AdminScreen> {
           return Scaffold(
             appBar: AppBar(
               centerTitle: true,
-              title: const Text("Admin"),
+              title: const Text(
+                "Admin",
+                style: TextStyle(color: Colors.black),
+              ),
+              backgroundColor: Colors.white,
+              elevation: 0,
+              leading: IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: Icon(
+                  Icons.arrow_back_ios,
+                  color: Colors.black,
+                ),
+              ),
             ),
             body: Center(
               child: GridView.count(

@@ -18,7 +18,7 @@ class Option extends StatelessWidget {
         width: Constants.width * 0.33,
         height: Constants.width * 0.33,
         decoration: BoxDecoration(
-            color: Colors.amber,
+            color: Colors.deepOrange.withOpacity(0.9),
             // border: Border.all(),
             boxShadow: [
               BoxShadow(

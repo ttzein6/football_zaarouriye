@@ -1,16 +1,25 @@
 import 'package:firebase_core/firebase_core.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:nede_fetyen/constants.dart';
 import 'package:nede_fetyen/firebase_options.dart';
 import 'package:nede_fetyen/screens/admin/admin.dart';
 import 'package:nede_fetyen/screens/admin/bloc/admin_bloc.dart';
+import 'package:nede_fetyen/screens/admin/login.dart';
 import 'package:nede_fetyen/screens/goals/bloc/goals_bloc.dart';
 import 'package:nede_fetyen/screens/goals/goals.dart';
+import 'package:nede_fetyen/screens/matches/bloc/matches_bloc.dart';
+import 'package:nede_fetyen/screens/matches/matches.dart';
 import 'package:nede_fetyen/screens/ranking/bloc/ranking_bloc.dart';
 import 'package:nede_fetyen/screens/ranking/ranking.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
+import 'package:nede_fetyen/screens/teams_stats/teams_list.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 void main() async {
+  usePathUrlStrategy();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -34,13 +43,30 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => AdminBloc(),
         ),
+        BlocProvider(
+          create: (context) => MatchesBloc(),
+        ),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
           useMaterial3: false,
-          primarySwatch: Colors.amber,
+          primarySwatch: Colors.deepOrange,
         ),
+        builder: (context, child) {
+          return ResponsiveWrapper.builder(
+            BouncingScrollWrapper.builder(context, child!),
+            minWidth: 300,
+            debugLog: true,
+            defaultScale: true,
+            breakpoints: [
+              const ResponsiveBreakpoint.autoScaleDown(450, name: MOBILE),
+              const ResponsiveBreakpoint.autoScale(800, name: TABLET),
+              const ResponsiveBreakpoint.resize(1200, name: DESKTOP),
+            ],
+            background: Container(color: Colors.deepOrange),
+          );
+        },
         home: MyHomePage(),
         debugShowCheckedModeBanner: false,
       ),
@@ -61,50 +87,87 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
   }
 
+  int index = 0;
+  List<Widget> pages = [
+    RankingScreen(),
+    // GoalsScreen(),
+    TeamsListScreen(),
+    MatchesScreen(),
+    AdminLogin(),
+  ];
   @override
   Widget build(BuildContext context) {
     Constants.width = MediaQuery.of(context).size.width;
     Constants.height = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text("Dashboard"),
-        elevation: 4,
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Column(
+      body: pages[index],
+      bottomNavigationBar: SafeArea(
+        maintainBottomViewPadding: true,
+        child: Container(
+          width: Constants.width,
+          height: Constants.height * 0.1,
+          decoration: BoxDecoration(
+              color: Colors.deepOrange.withOpacity(0.5),
+              boxShadow: [
+                BoxShadow(
+                    color: Colors.grey.shade400, //New
+                    blurRadius: 25.0,
+                    offset: Offset(0, -10))
+              ]),
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              SizedBox(
-                height: 50,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  optionCard(
-                      optionText: "Ranking",
-                      context: context,
-                      destination: Shuffler()),
-                  optionCard(optionText: "Matches", context: context),
-                ],
-              ),
-              SizedBox(
-                height: 50,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  optionCard(
-                      optionText: "Goals",
-                      context: context,
-                      destination: GoalsScreen()),
-                  optionCard(
-                      optionText: "Admin Only",
-                      context: context,
-                      destination: Material(child: AdminScreen())),
-                ],
-              ),
+              TextButton(
+                  onPressed: () {
+                    setState(() {
+                      index = 0;
+                    });
+                  },
+                  // child: SvgPicture.asset(
+                  //   "assets/images/ranking.svg",
+                  //   width: Constants.width * 0.175,
+                  //   color: index == 0 ? Colors.grey : Colors.white,
+                  //   // color: Colors.white,
+                  // ),
+                  child: Icon(
+                    Icons.score_sharp,
+                    color: index == 0 ? Colors.green : Colors.white,
+                    size: 30,
+                  )),
+              IconButton(
+                  onPressed: () {
+                    setState(() {
+                      index = 1;
+                    });
+                  },
+                  icon: Icon(
+                    Icons.people_alt,
+                    color: index == 1 ? Colors.green : Colors.white,
+                    size: 30,
+                  )),
+              IconButton(
+                  onPressed: () {
+                    setState(() {
+                      index = 2;
+                    });
+                  },
+                  icon: Icon(
+                    Icons.schedule,
+                    color: index == 2 ? Colors.green : Colors.white,
+                    size: 30,
+                  )),
+              IconButton(
+                  onPressed: () {
+                    setState(() {
+                      index = 3;
+                    });
+                  },
+                  icon: Icon(
+                    Icons.lock,
+                    color: index == 3 ? Colors.green : Colors.white,
+                    size: 30,
+                  ))
             ],
           ),
         ),
@@ -128,7 +191,7 @@ Widget optionCard(
       width: Constants.width * 0.4,
       height: Constants.width * 0.4,
       decoration: BoxDecoration(
-          color: Colors.amber,
+          color: Colors.deepOrange.withOpacity(0.8),
           borderRadius: BorderRadius.all(
             Radius.circular(10),
           ),
@@ -149,4 +212,10 @@ Widget optionCard(
       )),
     ),
   );
+}
+
+extension StringExtension on String {
+  String capitalize() {
+    return "${this[0].toUpperCase()}${this.substring(1).toLowerCase()}";
+  }
 }
