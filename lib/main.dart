@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Fetyan Football',
         theme: ThemeData(
           useMaterial3: false,
           primarySwatch: Colors.deepOrange,
