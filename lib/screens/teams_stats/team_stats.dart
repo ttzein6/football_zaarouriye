@@ -164,7 +164,10 @@ class TeamStats extends StatelessWidget {
                         "View Players",
                         style: TextStyle(fontSize: Constants.width * 0.04),
                       )),
-                )
+                ),
+                SizedBox(
+                  height: Constants.height * 0.06,
+                ),
               ],
             ),
           ),
@@ -183,7 +186,7 @@ class TeamStats extends StatelessWidget {
     );
     return Container(
       width: width ?? Constants.width * 0.25,
-      height: Constants.height * 0.08,
+      height: Constants.width * 0.13,
       // padding: EdgeInsets.symmetric(horizontal: Constants.height * 0.0),
       decoration: BoxDecoration(
           color: color, borderRadius: BorderRadius.all(Radius.circular(20))),

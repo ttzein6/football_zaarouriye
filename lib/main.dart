@@ -97,7 +97,9 @@ class _MyHomePageState extends State<MyHomePage> {
   ];
   @override
   Widget build(BuildContext context) {
-    Constants.width = MediaQuery.of(context).size.width;
+    Constants.width = MediaQuery.of(context).size.width > 700
+        ? 700
+        : MediaQuery.of(context).size.width;
     Constants.height = MediaQuery.of(context).size.height;
     return Scaffold(
       body: pages[index],

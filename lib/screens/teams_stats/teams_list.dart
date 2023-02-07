@@ -41,7 +41,7 @@ class _TeamsListScreenState extends State<TeamsListScreen> {
                     child: Text(
                       "Teams",
                       style: TextStyle(
-                          fontSize: Constants.width * 0.1,
+                          fontSize: Constants.height * 0.05,
                           fontWeight: FontWeight.w600,
                           color: Colors.deepOrange,
                           shadows: [
