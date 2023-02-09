@@ -74,7 +74,9 @@ class _TeamsListScreenState extends State<TeamsListScreen> {
                       onChanged: (value) {
                         List<Team> newTeams = [];
                         for (var element in state.teamsData) {
-                          if (element.name.contains(value)) {
+                          if (element.name
+                              .toLowerCase()
+                              .contains(value.toLowerCase())) {
                             newTeams.add(element);
                           }
                         }
