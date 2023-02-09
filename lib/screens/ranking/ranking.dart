@@ -233,6 +233,9 @@ class _RankingScreenState extends State<RankingScreen> {
                       ),
                       // ),
                     ),
+                    SizedBox(
+                      height: 30,
+                    ),
                   ],
                 ),
               );
