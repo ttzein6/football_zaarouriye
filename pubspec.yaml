@@ -38,6 +38,7 @@ dependencies:
   flutter_bloc: ^8.1.1
   flutter_svg: ^1.1.6
   http: ^0.13.5
+  intl: ^0.18.0
   responsive_framework: ^0.2.0
 
 dev_dependencies:

@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Match {
   String id;
   bool played;
@@ -9,6 +11,7 @@ class Match {
   int team1Goals;
   int team2Goals;
   int week;
+  Timestamp time;
   Match({
     required this.id,
     required this.played,
@@ -17,6 +20,7 @@ class Match {
     required this.team1Goals,
     required this.team2Goals,
     required this.week,
+    required this.time,
   });
 
   Map<String, dynamic> toMap() {
@@ -28,6 +32,7 @@ class Match {
       'team1Goals': team1Goals,
       'team2Goals': team2Goals,
       'week': week,
+      'time': time
     };
   }
 
@@ -40,6 +45,7 @@ class Match {
       team1Goals: map['team1Goals'] as int,
       team2Goals: map['team2Goals'] as int,
       week: map['week'] as int,
+      time: map['time'] as Timestamp,
     );
   }
 

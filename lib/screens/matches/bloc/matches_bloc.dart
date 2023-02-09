@@ -22,6 +22,16 @@ class MatchesBloc extends Bloc<MatchesEvent, MatchesState> {
     "week10": [],
     "week11": [],
     "week12": [],
+    "week13": [],
+    "week14": [],
+    "week15": [],
+    "week16": [],
+    "week17": [],
+    "week18": [],
+    "week19": [],
+    "week20": [],
+    "week21": [],
+    "week22": [],
   };
   Map<String, List<Match>> weekMatchesMap = {
     "week1": [],
@@ -36,6 +46,16 @@ class MatchesBloc extends Bloc<MatchesEvent, MatchesState> {
     "week10": [],
     "week11": [],
     "week12": [],
+    "week13": [],
+    "week14": [],
+    "week15": [],
+    "week16": [],
+    "week17": [],
+    "week18": [],
+    "week19": [],
+    "week20": [],
+    "week21": [],
+    "week22": [],
   };
   List<String> weeks = [
     "week1",
@@ -49,7 +69,17 @@ class MatchesBloc extends Bloc<MatchesEvent, MatchesState> {
     "week9",
     "week10",
     "week11",
-    "week12"
+    "week12",
+    "week13",
+    "week14",
+    "week15",
+    "week16",
+    "week17",
+    "week18",
+    "week19",
+    "week20",
+    "week21",
+    "week22"
   ];
   MatchesBloc() : super(MatchesInitial()) {
     on<GetAllMatches>((event, emit) async {
@@ -66,6 +96,16 @@ class MatchesBloc extends Bloc<MatchesEvent, MatchesState> {
         "week10": [],
         "week11": [],
         "week12": [],
+        "week13": [],
+        "week14": [],
+        "week15": [],
+        "week16": [],
+        "week17": [],
+        "week18": [],
+        "week19": [],
+        "week20": [],
+        "week21": [],
+        "week22": [],
       };
       emit(MatchesLoading());
 

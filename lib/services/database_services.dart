@@ -48,6 +48,7 @@ class Database {
 
       List<Match> matches = [];
       for (var element in doc.docs) {
+        log("MATCH TYPE::: ${element.data()["time"].runtimeType}");
         matches.add(Match.fromMap(element.data()));
       }
       return matches;
@@ -185,8 +186,13 @@ class Database {
   }
 
   //TODO
-  Future<void> addMatchResult(String matchId, String team1, String team2,
-      int team1Goals, int team2Goals) async {
+  Future<void> addMatchResult(
+    String matchId,
+    String team1,
+    String team2,
+    int team1Goals,
+    int team2Goals,
+  ) async {
     try {
       await _firestore
           .collection("matches")
@@ -203,6 +209,7 @@ class Database {
             team1Goals: team1Goals,
             team2Goals: team2Goals,
             week: value.docs.first.data()["week"],
+            time: value.docs.first.data()["time"],
           ).toMap(),
         )
             .then((value) async {
@@ -282,7 +289,8 @@ class Database {
   }
 
   //TODO
-  Future<void> scheduleMatch(String team1, String team2, int week) async {
+  Future<void> scheduleMatch(
+      String team1, String team2, int week, Timestamp time) async {
     try {
       await _firestore.collection("matches").add(Match(
             id: team1 + team2 + week.toString(),
@@ -292,6 +300,7 @@ class Database {
             team1Goals: 0,
             team2Goals: 0,
             played: false,
+            time: time,
           ).toMap());
     } catch (e) {
       debugPrint(e.toString());
