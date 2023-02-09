@@ -72,6 +72,7 @@ class TeamRow extends StatelessWidget {
             team.name,
             style: textStyle,
             textAlign: TextAlign.center,
+            overflow: TextOverflow.ellipsis,
           ),
         ),
         Container(
