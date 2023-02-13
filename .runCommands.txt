@@ -1,2 +1,2 @@
  for web release flutter build web  --web-renderer html --release
-for web run flutter run web --web-renderer html 
+for web run flutter run  --web-renderer html 
