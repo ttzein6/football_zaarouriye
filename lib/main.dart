@@ -159,17 +159,17 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: index == 2 ? Colors.green : Colors.white,
                     size: 30,
                   )),
-              IconButton(
-                  onPressed: () {
-                    setState(() {
-                      index = 3;
-                    });
-                  },
-                  icon: Icon(
-                    Icons.lock,
-                    color: index == 3 ? Colors.green : Colors.white,
-                    size: 30,
-                  ))
+              // IconButton(
+              //     onPressed: () {
+              //       setState(() {
+              //         index = 3;
+              //       });
+              //     },
+              //     icon: Icon(
+              //       Icons.lock,
+              //       color: index == 3 ? Colors.green : Colors.white,
+              //       size: 30,
+              //     )),
             ],
           ),
         ),
