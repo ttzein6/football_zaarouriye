@@ -4,6 +4,7 @@ import 'package:nede_fetyen/models/match_model.dart';
 import 'package:nede_fetyen/screens/matches/widgets/matchRow.dart';
 
 Widget weekRow(context, String week, List<Match> matches) {
+  matches.sort((a, b) => a.time.compareTo(b.time));
   return GestureDetector(
     child: Container(
       margin: const EdgeInsets.only(bottom: 20),
