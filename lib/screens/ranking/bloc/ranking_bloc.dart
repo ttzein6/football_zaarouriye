@@ -23,12 +23,15 @@ class RankingBloc extends Bloc<RankingEvent, RankingState> {
             if (goals != 0) {
               return goals;
             } else {
-              int yellowCards = a.yellowCards.compareTo(b.yellowCards);
-              if (yellowCards != 0) {
-                return yellowCards;
-              } else {
-                return a.redCards.compareTo(b.redCards);
-              }
+              // int cards = a.yellowCards.compareTo(b.yellowCards);
+              int cards = (a.yellowCards + (a.redCards * 2))
+                  .compareTo((b.yellowCards + (b.redCards * 2)));
+              return cards;
+              // if (yellowCards != 0) {
+              //   return yellowCards;
+              // } else {
+              //   return a.redCards.compareTo(b.redCards);
+              // }
             }
           }
         });
